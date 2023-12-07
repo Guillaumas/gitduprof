@@ -65,8 +65,14 @@ public class PalindromeTest {
     @ValueSource(strings = {"test", "radar"})
     public void testBonjour(String chaîne){
         // ETANT DONNE une chaîne
+        // ET un utilisateur parlant français
+        LangueFrançaise langue = new LangueFrançaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
         // QUAND on vérifie si c'est un palindrome
-        String résultat =  VérificationPalindromeBuilder.Default().Vérifier(chaîne);
+        String résultat = vérificateur.Vérifier(chaîne);
 
         // ALORS toute réponse est précédée de "Bonjour"
         String[] lines = résultat.split(System.lineSeparator());
@@ -77,8 +83,14 @@ public class PalindromeTest {
     @ValueSource(strings = {"test", "radar"})
     public void testAuRevoir(String chaîne){
         // ETANT DONNE une chaîne
+        // ET un utilisateur parlant français
+        LangueFrançaise langue = new LangueFrançaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
         // QUAND on vérifie si c'est un palindrome
-        String résultat =  VérificationPalindromeBuilder.Default().Vérifier(chaîne);
+        String résultat = vérificateur.Vérifier(chaîne);
 
         // ALORS toute réponse est suivie de "Au Revoir"
         String[] lines = résultat.split(System.lineSeparator());

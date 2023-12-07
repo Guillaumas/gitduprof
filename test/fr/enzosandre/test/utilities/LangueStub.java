@@ -10,12 +10,12 @@ public class LangueStub implements LangueInterface {
 
     @Override
     public String DireBonjour() {
-        return null;
+        return "";
     }
 
     @Override
     public String DireAuRevoir() {
-        return null;
+        return "";
     }
 
 
