@@ -1,8 +1,10 @@
 package fr.enzosandre;
 
 import fr.enzosandre.test.utilities.VérificationPalindromeBuilder;
+import fr.enzosandre.utilities.PeriodeDeLaJournee;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -132,5 +134,83 @@ public class PalindromeTest {
         String[] lines = résultat.split(System.lineSeparator());
         String lastLine = lines[lines.length - 1];
         assertEquals(Expressions.Goodbye, lastLine);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"test", "radar"})
+    public void testSalutationMatinFrançais(String chaîne){
+        // ETANT DONNE une chaîne
+        // ET un utilisateur parlant français
+        LangueFrançaise langue = new LangueFrançaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .AyantPourPeriode(PeriodeDeLaJournee.MATIN)
+                .Build();
+
+        // QUAND on vérifie si c'est un palindrome
+        String résultat = vérificateur.Vérifier(chaîne);
+
+        // ALORS toute réponse est précédée de "Bonjour"
+        String[] lines = résultat.split(System.lineSeparator());
+        assertEquals("Bonjour", lines[0]);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"test", "radar"})
+    public void testAuRevoirSoirFrançais(String chaîne){
+        // ETANT DONNE une chaîne
+        // ET un utilisateur parlant français
+        LangueFrançaise langue = new LangueFrançaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .AyantPourPeriode(PeriodeDeLaJournee.SOIREE)
+                .Build();
+
+        // QUAND on vérifie si c'est un palindrome
+        String résultat = vérificateur.Vérifier(chaîne);
+
+        // ALORS toute réponse est suivie de "Au revoir, passez une bonne soirée"
+        String[] lines = résultat.split(System.lineSeparator());
+        String lastLine = lines[lines.length - 1];
+        assertEquals("Au revoir, passez une bonne soirée", lastLine);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"test", "radar"})
+    public void testSalutationMatinAnglais(String chaîne){
+        // ETANT DONNE une chaîne
+        // ET un utilisateur parlant anglais
+        LangueAnglaise langue = new LangueAnglaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .AyantPourPeriode(PeriodeDeLaJournee.MATIN)
+                .Build();
+
+        // QUAND on vérifie si c'est un palindrome
+        String résultat = vérificateur.Vérifier(chaîne);
+
+        // ALORS toute réponse est précédée de "Good morning"
+        String[] lines = résultat.split(System.lineSeparator());
+        assertEquals("Good morning", lines[0]);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"test", "radar"})
+    public void testAuRevoirSoirAnglais(String chaîne){
+        // ETANT DONNE une chaîne
+        // ET un utilisateur parlant anglais
+        LangueAnglaise langue = new LangueAnglaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .AyantPourPeriode(PeriodeDeLaJournee.SOIREE)
+                .Build();
+
+        // QUAND on vérifie si c'est un palindrome
+        String résultat = vérificateur.Vérifier(chaîne);
+
+        // ALORS toute réponse est suivie de "Goodbye, have a good evening"
+        String[] lines = résultat.split(System.lineSeparator());
+        String lastLine = lines[lines.length - 1];
+        assertEquals("Goodbye, have a good evening", lastLine);
     }
 }

@@ -1,14 +1,22 @@
 package fr.enzosandre;
 
+import fr.enzosandre.utilities.PeriodeDeLaJournee;
+
 public class VérificationPalindrome {
     private LangueInterface langue;
+    private PeriodeDeLaJournee periode;
 
-    public VérificationPalindrome(LangueInterface langue) {
+    public VérificationPalindrome(LangueInterface langue, PeriodeDeLaJournee periode) {
         this.langue = langue;
+        this.periode = periode;
     }
 
     public void setLangue(LangueInterface langue) {
         this.langue = langue;
+    }
+
+    public void setPeriode(PeriodeDeLaJournee periode) {
+        this.periode = periode;
     }
 
     public String Vérifier(String chaîne) {
@@ -16,8 +24,10 @@ public class VérificationPalindrome {
                 .reverse()
                 .toString();
 
+        String salutation = langue.getSalutation(periode);
+        String auRevoir = langue.getAuRevoir(periode);
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append(langue.DireBonjour());
+        resultBuilder.append(salutation);
         resultBuilder.append(System.lineSeparator());
         resultBuilder.append(miroir);
         resultBuilder.append(System.lineSeparator());
@@ -27,7 +37,7 @@ public class VérificationPalindrome {
             resultBuilder.append(System.lineSeparator());
         }
 
-        resultBuilder.append(langue.DireAuRevoir());
+        resultBuilder.append(auRevoir);
         return resultBuilder.toString();
     }
 }
