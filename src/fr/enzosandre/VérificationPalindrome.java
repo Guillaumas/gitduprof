@@ -1,10 +1,13 @@
 package fr.enzosandre;
 
 public class VérificationPalindrome {
-    public VérificationPalindrome(LangueFrançaise langue) {
+    private boolean _estFrançais;
+
+    public VérificationPalindrome(LangueInterface langue) {
+        _estFrançais = langue instanceof LangueFrançaise;
     }
 
-    public static String Vérifier(String chaîne) {
+    public String Vérifier(String chaîne) {
         String miroir =  new StringBuilder(chaîne)
                 .reverse()
                 .toString();
@@ -16,7 +19,7 @@ public class VérificationPalindrome {
         resultBuilder.append(System.lineSeparator());
 
         if(miroir.equals(chaîne)) {
-            resultBuilder.append(Expressions.BienDit);
+            resultBuilder.append(this._estFrançais ? Expressions.BienDit : Expressions.WellSaid);
             resultBuilder.append(System.lineSeparator());
         }
 

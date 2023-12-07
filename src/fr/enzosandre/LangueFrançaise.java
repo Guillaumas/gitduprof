@@ -1,4 +1,4 @@
 package fr.enzosandre;
 
-public class LangueFrançaise {
+public class LangueFrançaise implements LangueInterface {
 }
