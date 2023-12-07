@@ -1,9 +1,13 @@
 package fr.enzosandre;
 
 public class VérificationPalindrome {
-    private final LangueInterface langue;
+    private LangueInterface langue;
 
     public VérificationPalindrome(LangueInterface langue) {
+        this.langue = langue;
+    }
+
+    public void setLangue(LangueInterface langue) {
         this.langue = langue;
     }
 
@@ -13,7 +17,7 @@ public class VérificationPalindrome {
                 .toString();
 
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append(Expressions.Bonjour);
+        resultBuilder.append(langue.DireBonjour());
         resultBuilder.append(System.lineSeparator());
         resultBuilder.append(miroir);
         resultBuilder.append(System.lineSeparator());
@@ -23,7 +27,7 @@ public class VérificationPalindrome {
             resultBuilder.append(System.lineSeparator());
         }
 
-        resultBuilder.append(Expressions.AuRevoir);
+        resultBuilder.append(langue.DireAuRevoir());
         return resultBuilder.toString();
     }
 }

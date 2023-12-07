@@ -5,4 +5,14 @@ public class LangueAnglaise implements LangueInterface {
     public String Féliciter() {
         return Expressions.WellSaid;
     }
+
+    @Override
+    public String DireBonjour() {
+        return Expressions.Hello;
+    }
+
+    @Override
+    public String DireAuRevoir() {
+        return Expressions.Goodbye;
+    }
 }

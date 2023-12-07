@@ -85,4 +85,40 @@ public class PalindromeTest {
         String lastLine = lines[lines.length - 1];
         assertEquals(Expressions.AuRevoir, lastLine);
     }
+    @ParameterizedTest
+    @ValueSource(strings = {"test", "radar"})
+    public void testHello(String chaîne){
+        // ETANT DONNE une chaîne
+        // ET un utilisateur parlant anglais
+        LangueAnglaise langue = new LangueAnglaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
+        // QUAND on vérifie si c'est un palindrome
+        String résultat = vérificateur.Vérifier(chaîne);
+
+        // ALORS toute réponse est précédée de "Hello"
+        String[] lines = résultat.split(System.lineSeparator());
+        assertEquals(Expressions.Hello, lines[0]);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"test", "radar"})
+    public void testGoodbye(String chaîne){
+        // ETANT DONNE une chaîne
+        // ET un utilisateur parlant anglais
+        LangueAnglaise langue = new LangueAnglaise();
+        var vérificateur = new VérificationPalindromeBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
+        // QUAND on vérifie si c'est un palindrome
+        String résultat = vérificateur.Vérifier(chaîne);
+
+        // ALORS toute réponse est suivie de "Goodbye"
+        String[] lines = résultat.split(System.lineSeparator());
+        String lastLine = lines[lines.length - 1];
+        assertEquals(Expressions.Goodbye, lastLine);
+    }
 }

@@ -5,4 +5,14 @@ public class LangueFrançaise implements LangueInterface {
     public String Féliciter() {
         return Expressions.BienDit;
     }
+
+    @Override
+    public String DireBonjour() {
+        return Expressions.Bonjour;
+    }
+
+    @Override
+    public String DireAuRevoir() {
+        return Expressions.AuRevoir;
+    }
 }
