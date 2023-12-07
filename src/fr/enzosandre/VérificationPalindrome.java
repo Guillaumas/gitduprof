@@ -1,10 +1,10 @@
 package fr.enzosandre;
 
 public class VérificationPalindrome {
-    private boolean _estFrançais;
+    private final LangueInterface langue;
 
     public VérificationPalindrome(LangueInterface langue) {
-        _estFrançais = langue instanceof LangueFrançaise;
+        this.langue = langue;
     }
 
     public String Vérifier(String chaîne) {
@@ -19,7 +19,7 @@ public class VérificationPalindrome {
         resultBuilder.append(System.lineSeparator());
 
         if(miroir.equals(chaîne)) {
-            resultBuilder.append(this._estFrançais ? Expressions.BienDit : Expressions.WellSaid);
+            resultBuilder.append(this.langue.Féliciter());
             resultBuilder.append(System.lineSeparator());
         }
 
