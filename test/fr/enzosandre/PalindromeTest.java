@@ -15,7 +15,7 @@ public class PalindromeTest {
         // QUAND on vérifie si c'est un palindrome
         String résultat = VérificationPalindromeBuilder.Default().Vérifier(chaîne);
 
-        // ALORS on obtient son miroir
+        // ALORS, on obtient son miroir
         String inversion = new StringBuilder(chaîne)
                 .reverse()
                 .toString();
