@@ -1,7 +1,8 @@
 package fr.enzosandre;
 
+import fr.enzosandre.domain.*;
 import fr.enzosandre.test.utilities.VérificationPalindromeBuilder;
-import fr.enzosandre.utilities.PeriodeDeLaJournee;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,30 +30,34 @@ public class PalindromeTest {
     }
 
 
-    static Stream<Arguments> casTestPalindrome() {
+    static Stream<Arguments> casTestSalutations() {
         return Stream.of(
-                Arguments.of(new LangueAnglaise(), Expressions.WellSaid),
-                Arguments.of(new LangueFrançaise(), Expressions.BienDit)
+                Arguments.of(new LangueAnglaise(), PeriodeDeLaJournee.MATIN, "Good morning", "Goodbye, have a good day"),
+                Arguments.of(new LangueAnglaise(), PeriodeDeLaJournee.SOIREE, "Good evening", "Goodbye, have a good evening"),
+                Arguments.of(new LangueFrançaise(), PeriodeDeLaJournee.MATIN, "Bonjour", "Au revoir, passez une bonne journée"),
+                Arguments.of(new LangueFrançaise(), PeriodeDeLaJournee.SOIREE, "Bonsoir", "Au revoir, passez une bonne soirée")
         );
     }
 
     @ParameterizedTest
-    @MethodSource("casTestPalindrome")
-    public void testPalindrome(LangueInterface langue, String félicitations){
+    @MethodSource("casTestSalutations")
+    public void testSalutations(LangueInterface langue, PeriodeDeLaJournee periode, String bonjour, String auRevoir){
         // ETANT DONNE un palindrome
         String palindrome = "radar";
 
-        // ET un utilisateur parlant une <langue>
+        // ET un utilisateur parlant une <langue> à une certaine <periode>
         var vérificateur = new VérificationPalindromeBuilder()
                 .AyantPourLangue(langue)
+                .AyantPourPeriode(periode)
                 .Build();
 
         // QUAND on vérifie si c'est un palindrome
         String résultat = vérificateur.Vérifier(palindrome);
 
-        // ALORS la chaîne est répétée, suivie de félicitations dans cette langue
-        String attendu = palindrome + System.lineSeparator() + félicitations;
-        assertTrue(résultat.contains(attendu));
+        // ALORS la chaîne est précédée de <bonjour> et suivie de <auRevoir>
+        String attendu = bonjour + System.lineSeparator() + palindrome + System.lineSeparator() + auRevoir;
+        String[] lines = résultat.split(System.lineSeparator());
+        assertEquals(attendu, lines[0] + System.lineSeparator() + lines[1] + System.lineSeparator() + lines[lines.length - 1]);
     }
 
     @ParameterizedTest
@@ -204,5 +209,14 @@ public class PalindromeTest {
         String[] lines = résultat.split(System.lineSeparator());
         String lastLine = lines[lines.length - 1];
         assertEquals("Goodbye, have a good evening", lastLine);
+    }
+
+    @Test
+    public void sautDeLigneTerminalTest(){
+        var detectteur = new VérificationPalindromeBuilder().Default();
+
+        var resultat = detectteur.Vérifier("");
+
+        assertTrue(resultat.endsWith(System.lineSeparator()));
     }
 }

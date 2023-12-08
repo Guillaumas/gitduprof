@@ -1,8 +1,8 @@
 package fr.enzosandre.test.utilities;
 
-import fr.enzosandre.LangueInterface;
-import fr.enzosandre.VérificationPalindrome;
-import fr.enzosandre.utilities.PeriodeDeLaJournee;
+import fr.enzosandre.domain.LangueInterface;
+import fr.enzosandre.domain.VérificationPalindrome;
+import fr.enzosandre.domain.PeriodeDeLaJournee;
 
 public class VérificationPalindromeBuilder {
     private LangueInterface langue = new LangueStub();

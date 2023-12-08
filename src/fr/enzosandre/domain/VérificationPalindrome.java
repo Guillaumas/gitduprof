@@ -1,6 +1,4 @@
-package fr.enzosandre;
-
-import fr.enzosandre.utilities.PeriodeDeLaJournee;
+package fr.enzosandre.domain;
 
 public class VérificationPalindrome {
     private LangueInterface langue;
@@ -38,6 +36,7 @@ public class VérificationPalindrome {
         }
 
         resultBuilder.append(auRevoir);
+        resultBuilder.append(System.lineSeparator());
         return resultBuilder.toString();
     }
 }

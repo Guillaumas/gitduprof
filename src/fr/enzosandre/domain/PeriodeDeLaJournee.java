@@ -1,4 +1,4 @@
-package fr.enzosandre.utilities;
+package fr.enzosandre.domain;
 
 public enum PeriodeDeLaJournee {
     MATIN,

@@ -1,6 +1,4 @@
-package fr.enzosandre;
-
-import fr.enzosandre.utilities.PeriodeDeLaJournee;
+package fr.enzosandre.domain;
 
 public class LangueAnglaise implements LangueInterface {
     @Override

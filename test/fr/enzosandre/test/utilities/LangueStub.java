@@ -1,7 +1,7 @@
 package fr.enzosandre.test.utilities;
 
-import fr.enzosandre.LangueInterface;
-import fr.enzosandre.utilities.PeriodeDeLaJournee;
+import fr.enzosandre.domain.LangueInterface;
+import fr.enzosandre.domain.PeriodeDeLaJournee;
 
 public class LangueStub implements LangueInterface {
     @Override

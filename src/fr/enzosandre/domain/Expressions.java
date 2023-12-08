@@ -1,4 +1,4 @@
-package fr.enzosandre;
+package fr.enzosandre.domain;
 
 public class Expressions {
     public static final String BienDit = "Bien dit !";
