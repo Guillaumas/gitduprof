@@ -13,20 +13,23 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MomentDeLajourneeTest {
-    static Stream<Arguments> casMomentDeLaJournee(){
-        return Stream.concat(
-                IntStream.range(0, 24).mapToObj(heure -> Arguments.of(heure, new LangueAnglaise(), DetectionMomentJournee.Detecter(heure), new LangueAnglaise().getSalutation(DetectionMomentJournee.Detecter(heure)))),
-                IntStream.range(0, 24).mapToObj(heure -> Arguments.of(heure, new LangueFrançaise(), DetectionMomentJournee.Detecter(heure), new LangueFrançaise().getSalutation(DetectionMomentJournee.Detecter(heure))))
+    static Stream<Arguments> casMomentDeLaJourneeSelonHeure(){
+        return Stream.of(
+                Arguments.of(0, PeriodeDeLaJournee.NUIT),
+                Arguments.of(8, PeriodeDeLaJournee.MATIN),
+                Arguments.of(11, PeriodeDeLaJournee.MATIN),
+                Arguments.of(13, PeriodeDeLaJournee.APRES_MIDI),
+                Arguments.of(17, PeriodeDeLaJournee.APRES_MIDI),
+                Arguments.of(20, PeriodeDeLaJournee.SOIREE),
+                Arguments.of(21, PeriodeDeLaJournee.SOIREE),
+                Arguments.of(23, PeriodeDeLaJournee.NUIT)
         );
     }
 
     @ParameterizedTest
-    @MethodSource("casMomentDeLaJournee")
-    public void testMomentDeLaJourneeSelonLangue(int heure, LangueInterface langue, PeriodeDeLaJournee periodeAttendue, String salutationAttendue){
+    @MethodSource("casMomentDeLaJourneeSelonHeure")
+    public void testMomentDeLaJourneeSelonHeure(int heure, PeriodeDeLaJournee periodeAttendue){
         var periode = DetectionMomentJournee.Detecter(heure);
         assert periode == periodeAttendue;
-
-        var salutation = langue.getSalutation(periode);
-        assert salutation.equals(salutationAttendue);
     }
 }
