@@ -22,7 +22,7 @@ public class MomentDeLajourneeTest {
 
     @ParameterizedTest
     @MethodSource("casMomentDeLaJournee")
-    public void testMomentDeLaJournee(int heure, LangueInterface langue, PeriodeDeLaJournee periodeAttendue, String salutationAttendue){
+    public void testMomentDeLaJourneeSelonLangue(int heure, LangueInterface langue, PeriodeDeLaJournee periodeAttendue, String salutationAttendue){
         var periode = DetectionMomentJournee.Detecter(heure);
         assert periode == periodeAttendue;
 
